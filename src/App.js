@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import rolesData from './db.json'
 
-function App() {
+
+const RoleList = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Таблиця ролей</h1>
+      <table className='roles_table'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Роль</th>
+            <th>Функції</th>
+            <th>Зони відповідальності</th>
+            <th>Підпорядкування</th>
+          </tr>
+        </thead>
+        <tbody className='roles_table_body'>
+          {rolesData.roles.map(role => (
+            <tr key={role.id}>
+              <td>{role.id}</td>
+              <td>{role.role}</td>
+              <td>{role.functions.join(", ")}</td>
+              <td>{role.zones_of_responsibility.join(", ")}</td>
+              <td>{role.subordination}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default App;
+export default RoleList;
